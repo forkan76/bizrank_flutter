@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -24,11 +25,22 @@ class MyApp extends StatelessWidget{
 }
 
 class HomeActivity extends StatelessWidget{
-  const HomeActivity({super.key});
+  HomeActivity({super.key});
 
   MySnackBar(message, context){
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
+
+  var MyItems = [
+    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH1"},
+    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH2"},
+    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH3"},
+    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH4"},
+    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH5"},
+    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH6"},
+    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH7"},
+    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH8"}
+  ];
 
   MyAlertDialog(context){
     return showDialog(context: context, builder: (BuildContext context){
@@ -48,6 +60,9 @@ class HomeActivity extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    
+    ButtonStyle buttonStyle=ElevatedButton.styleFrom(minimumSize: Size(double.infinity, 60));
+
     return Scaffold(
       appBar: AppBar(
         title: Text('NPKBH'),
@@ -58,9 +73,32 @@ class HomeActivity extends StatelessWidget{
           IconButton(onPressed: (){MySnackBar("Comments", context);}, icon: Icon(Icons.access_alarm)),
         ],
       ),
-      body: Center(
-        child: ElevatedButton(child: Text("Click Me"), onPressed: (){MyAlertDialog(context);},),
+      body: ListView.builder(
+        itemCount: MyItems.length,
+        itemBuilder: (context, index){
+          return GestureDetector(
+            onTap: (){MySnackBar(MyItems[index]['title'], context);},
+            child: Container(
+              margin: EdgeInsets.all(10),
+              width: double.infinity,
+              height: 200,
+              child: Image.network(MyItems[index]["img"]!!, fit: BoxFit.fill)
+            ),
+          );
+        },
       ),
+      // body: Column(
+      //   mainAxisAlignment: MainAxisAlignment.start,
+      //   children: [
+      //     Padding(padding: EdgeInsets.all(20), child: TextField(decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'First Name'),),),
+      //     Padding(padding: EdgeInsets.all(20), child: TextField(decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'First Name'),),),
+      //     Padding(padding: EdgeInsets.all(20), child: TextField(decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'First Name'),),),
+      //     Padding(padding: EdgeInsets.all(20), child: ElevatedButton(onPressed: (){}, child: Text("Submit"),),)
+      //   ],
+      // ),
+      // body: Center(
+      //   child: ElevatedButton(child: Text("Click Me"), onPressed: (){MyAlertDialog(context);},),
+      // ),
       // body: Row(
       //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       //   children: [
