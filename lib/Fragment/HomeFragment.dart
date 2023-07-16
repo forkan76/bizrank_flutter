@@ -7,9 +7,7 @@ class HomeFragment extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: ElevatedButton(onPressed: (){
-          Navigator.push(context,MaterialPageRoute(builder: (context)=>Activity1()));
-        }, child: Text("Go Activity 1")),
+        child: Text("Home Fragment"),
       ),
     );
   }

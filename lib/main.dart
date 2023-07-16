@@ -1,14 +1,26 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+//To use REST api
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+//To use REST api end
 import 'package:npkbh/Fragment/BalanceFragment.dart';
 import 'package:npkbh/Fragment/ContactFragment.dart';
 import 'package:npkbh/Fragment/EmailFragment.dart';
+import 'package:npkbh/Fragment/HomeFragment.dart';
 import 'package:npkbh/Fragment/PersonFragment.dart';
 import 'package:npkbh/Fragment/SearchFragment.dart';
 import 'package:npkbh/Fragment/SettingsFragment.dart';
+import 'package:npkbh/views/attendance_page.dart';
+import 'package:npkbh/views/home_page.dart';
 
 import 'Fragment/AlermFragment.dart';
+
+import 'package:npkbh/Fragment/fruit.dart';
+import 'package:npkbh/Fragment/fruitItem.dart';
+import 'package:npkbh/Fragment/fruitList.dart';
 
 main(){
   runApp(const MyApp());
@@ -26,17 +38,72 @@ class MyApp extends StatelessWidget{
         darkTheme: ThemeData(primarySwatch: Colors.amber),
         color: Colors.blue,
         debugShowCheckedModeBanner: false,
-        home: HomeActivity()
+        home: const AttendancePage()
     );
   }
   
 }
 
+// class _MyAppState extends State<MyApp>{
+//
+// }
+
 class HomeActivity extends StatelessWidget{
-  HomeActivity({super.key});
+  @override
+
+  // late List<String> posts;
+  // Future<bool> _getPosts() async{
+  //   String serviceUrl = "https://br-isgalleon.com/api/attendance/get_attendance.php";
+  //   var response = await http.get(serviceUrl as Uri);
+  //   // setState((){
+  //         posts = json.decode(response.body.toString());
+  //   // });
+  //   return false;
+  // }
+
+  Future<http.Response> fetchPost() {
+    return http.get('https://jsonplaceholder.typicode.com/posts/1' as Uri);
+  }
+
+  // Future<List<Fruit>> fetchFruit() async {
+  //   final response = await http.get(url as Uri);
+  // }
+  // String url = "https://br-isgalleon.com/api/attendance/get_attendance.php";
+  // @override
+  // void initState(){
+  //   super.initState();
+  // }
+
+  Widget build(BuildContext context) {
+    return DefaultTabController(length: 2, child: Scaffold(
+      appBar: AppBar(
+        title: Text("NPKBH"),
+        bottom: TabBar(
+          isScrollable: true,
+          tabs: [
+            Tab(icon: Icon(Icons.home), text: "Home"),
+            Tab(icon: Icon(Icons.access_alarm), text: "Profile"),
+          ],
+        ),
+      ),
+      body: TabBarView(
+        children: [
+          HomeFragment(),
+          PersonFragment(),
+        ],
+      ),
+    ));
+  }
+
+}
+
+class HomeActivityBackup extends StatelessWidget{
+  // HomeActivity({super.key});
 
   MySnackBar(message, context){
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message))
+    );
   }
 
   var MyItems = [
@@ -71,20 +138,130 @@ class HomeActivity extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
+        titleSpacing: 10,
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.search))
+        ],
       ),
-      body: Center(
-        child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          shadowColor: Color.fromRGBO(33, 191, 115, 1),
-          color: Color.fromRGBO(33, 191, 115, 1),
-          elevation: 80,
-          child: SizedBox(
-            height: 200,
-            width: 200,
-            child: Center(child: Text('This is card'),),
-          ),
+
+      floatingActionButton: FloatingActionButton(
+        elevation: 10,
+        child: Icon(Icons.add),
+        backgroundColor: Colors.green,
+        onPressed: (){
+          MySnackBar("I am floating action button.", context);
+        },
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.message), label: "Contact"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
+        ],
+        onTap: (int index){
+          if(index == 0){
+            MySnackBar("I am home bottom menu.", context);
+          }
+          if(index == 1){
+            MySnackBar("I am contact bottom menu.", context);
+          }
+          if(index == 2){
+            MySnackBar("I am profile bottom menu.", context);
+          }
+        },
+      ),
+
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+                child: UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(color: Colors.black),
+                  accountName: Text("Forkan"),
+                  accountEmail: Text("forkan76@gmail.com"),
+                  // currentAccountPicture: Image.network("https://pixlok.com/wp-content/uploads/2021/05/flutter-logo-768x768.jpg"),
+                  onDetailsPressed: (){MySnackBar('This is profile', context);},
+                )
+            ),
+            ListTile(leading: Icon(Icons.home), title: Text("Home"), onTap: (){MySnackBar("Drawyer home", context);}),
+            ListTile(leading: Icon(Icons.message), title: Text("Contact"), onTap: (){MySnackBar("Drawyer contact", context);}),
+            ListTile(leading: Icon(Icons.person), title: Text("Profile"), onTap: (){MySnackBar("Drawyer profile", context);}),
+            ListTile(leading: Icon(Icons.email), title: Text("Email"), onTap: (){MySnackBar("Drawyer email", context);}),
+            ListTile(leading: Icon(Icons.phone), title: Text("Phone"), onTap: (){MySnackBar("Drawyer phone", context);})
+          ],
         ),
       ),
+      // endDrawer: (),
+
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            height: 150,
+            width: 150,
+            margin: EdgeInsets.all(30),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.amber,
+              border: Border.all(color: Colors.black, width: 6),
+            ),
+            child: Center(
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shadowColor: Color.fromRGBO(33, 191, 115, 1),
+                color: Color.fromRGBO(33, 191, 115, 1),
+                elevation: 80,
+                child: SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: Center(child: Text('This is card'),),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 150,
+            width: 150,
+            margin: EdgeInsets.all(30),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.amber,
+              border: Border.all(color: Colors.black, width: 6),
+            ),
+            child: Center(
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shadowColor: Color.fromRGBO(33, 191, 115, 1),
+                color: Color.fromRGBO(33, 191, 115, 1),
+                elevation: 80,
+                child: SizedBox(
+                  height: 150,
+                  width: 150,
+                  child: Center(child: Text('This is card'),),
+                ),
+              ),
+            ),
+          ),
+        ],
+      )
+
+
+      // body: Center(
+      //   child: Card(
+      //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      //     shadowColor: Color.fromRGBO(33, 191, 115, 1),
+      //     color: Color.fromRGBO(33, 191, 115, 1),
+      //     elevation: 80,
+      //     child: SizedBox(
+      //       height: 200,
+      //       width: 200,
+      //       child: Center(child: Text('This is card'),),
+      //     ),
+      //   ),
+      // ),
+
       // body: Column(
       //   mainAxisAlignment: MainAxisAlignment.start,
       //   children: [
@@ -97,6 +274,7 @@ class HomeActivity extends StatelessWidget{
       //   ],
       // ),
     );
+
     // return DefaultTabController(
     //     length: 8,
     //     child: Scaffold(
