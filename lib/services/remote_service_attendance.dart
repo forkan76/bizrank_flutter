@@ -12,8 +12,9 @@ class RemoteServiceAttendance{
     if(response.statusCode == 200)
     {
       var json = response.body;
-      // print(AttendanceFromJson(json));
-      return AttendanceFromJson(json);
+      // return response.body.length;
+      // print(response.body.length);
+      return getAttendanceFromJson(json);
     }
   }
 }
