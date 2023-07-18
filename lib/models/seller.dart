@@ -4,9 +4,9 @@
 
 import 'dart:convert';
 
-Seller sellerFromJson(String str) => Seller.fromJson(json.decode(str));
+List<Seller> sellerFromJson(String str) => List<Seller>.from(json.decode(str).map((x) => Seller.fromJson(x)));
 
-String sellerToJson(Seller data) => json.encode(data.toJson());
+String sellerToJson(List<Seller> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Seller {
   int id;

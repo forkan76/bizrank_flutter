@@ -15,6 +15,7 @@ import 'package:npkbh/Fragment/SearchFragment.dart';
 import 'package:npkbh/Fragment/SettingsFragment.dart';
 import 'package:npkbh/views/attendance_page.dart';
 import 'package:npkbh/views/home_page.dart';
+import 'package:npkbh/views/seller_profile_page.dart';
 
 import 'Fragment/AlermFragment.dart';
 
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget{
         darkTheme: ThemeData(primarySwatch: Colors.amber),
         color: Colors.blue,
         debugShowCheckedModeBanner: false,
-        home: const AttendancePage()
+        home: const SellerProfile()
     );
   }
   
