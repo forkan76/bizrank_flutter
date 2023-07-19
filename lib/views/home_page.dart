@@ -37,21 +37,19 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: const Text("Posts")),
       body: Visibility(
         visible: isLoaded,
-        child: ListView.builder(
-            itemCount: posts?.length, itemBuilder: (context, index){
-          return Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(posts![index].title, maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
-                Text(posts![index].body ?? '', maxLines: 3,)
-              ],
-            ),
-          );
-        }),
         replacement: const Center(
           child: CircularProgressIndicator(),
         ),
+        child: ListView.builder(
+            itemCount: posts?.length, itemBuilder: (context, index){
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(posts![index].title, maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+              Text(posts![index].body ?? '', maxLines: 3,)
+            ],
+          );
+        }),
       )
     );
   }

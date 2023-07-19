@@ -11,13 +11,20 @@ class SellerProfile extends StatefulWidget {
 }
 
 class _SellerProfileState extends State<SellerProfile> {
-  List<Seller>? seller;
+  List<Seller>? sellers;
   var isLoaded = false;
 
+  @override
+  void initState() {
+    super.initState();
+
+    //  Fetch data from API
+    getData();
+  }
 
   getData() async{
-    seller = (await RemoteServiceSellerProfile().getSellers());
-    if(seller != null){
+    sellers = (await RemoteServiceSellerProfile().getSellers());
+    if(sellers != null){
       setState(() {
         isLoaded = true;
       });
@@ -28,28 +35,7 @@ class _SellerProfileState extends State<SellerProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("Seller Profile")),
-        body:
-        Visibility(
-          visible: isLoaded,
-          replacement: const Center(
-            child: CircularProgressIndicator(),
-          ),
-          child: ListView.builder(
-              itemCount: 10, itemBuilder: (context, index){
-            return Container(
-              child: Text('ok'),
-              // child: Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children:
-              //   [
-              //     // Text(seller![index].id as String, maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
-              //     // Text(seller![index].sellerCode ?? '', maxLines: 3,)
-              //
-              //   ],
-              // ),
-            );
-          }),
-        )
+        body:const Text('ok')
     );
   }
 }

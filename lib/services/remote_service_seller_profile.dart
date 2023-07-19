@@ -6,17 +6,14 @@ class RemoteServiceSellerProfile{
   {
     var client = http.Client();
 
-    String serviceUrl = "http://localhost/fbsellers1/api/seller/read.php";
+    String serviceUrl = "https://jsonplaceholder.typicode.com/posts";
     var uri = Uri.parse(serviceUrl);
-    var response = await client.post(uri,
-        body: {
-          "id": "1"
-        });
+    var response = await client.get(uri);
     if(response.statusCode == 200)
     {
       var json = response.body;
-      // return response.body.length;
-      // print(response.body.length);
+      // throw Exception('exception ok');
+      // return null;
       return sellerFromJson(json);
     }
   }
