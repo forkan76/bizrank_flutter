@@ -6,7 +6,7 @@ class RemoteServiceSellerProfile{
   {
     var client = http.Client();
 
-    String serviceUrl = "https://jsonplaceholder.typicode.com/posts";
+    String serviceUrl = "http://localhost/fbsellers1/api/seller/read.php";
     var uri = Uri.parse(serviceUrl);
     var response = await client.get(uri);
     if(response.statusCode == 200)

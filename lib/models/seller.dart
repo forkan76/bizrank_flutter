@@ -13,19 +13,19 @@ class Seller {
   String sellerCode;
   int codeTypeId;
   String name;
-  dynamic fatherName;
-  dynamic motherName;
+  String? fatherName;
+  String? motherName;
   String mobile01;
-  dynamic mobile02;
+  String? mobile02;
   String countryName;
   String facebookProfileName;
   String facebookProfileUrl;
-  dynamic facebookPageUrl;
+  String? facebookPageUrl;
   String email;
   String address;
   int businessModeId;
-  dynamic businessName;
-  dynamic businessMobile;
+  String? businessName;
+  String? businessMobile;
   int hasRequestSellerCode;
   int hasPhotoId;
   String photoIdType;
@@ -34,7 +34,7 @@ class Seller {
   int createdBy;
   int updatedBy;
   DateTime createTime;
-  dynamic updateTime;
+  DateTime? updateTime;
 
   Seller({
     required this.id,
@@ -91,35 +91,35 @@ class Seller {
     createdBy: json["created_by"],
     updatedBy: json["updated_by"],
     createTime: DateTime.parse(json["create_time"]),
-    updateTime: json["update_time"],
+    updateTime: json["update_time"] != null ? DateTime.parse(json["update_time"]):null,
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "seller_code": sellerCode,
-    "code_type_id": codeTypeId,
-    "name": name,
-    "father_name": fatherName,
-    "mother_name": motherName,
-    "mobile_01": mobile01,
-    "mobile_02": mobile02,
-    "country_name": countryName,
-    "facebook_profile_name": facebookProfileName,
-    "facebook_profile_url": facebookProfileUrl,
-    "facebook_page_url": facebookPageUrl,
-    "email": email,
-    "address": address,
-    "business_mode_id": businessModeId,
-    "business_name": businessName,
-    "business_mobile": businessMobile,
-    "has_request_seller_code": hasRequestSellerCode,
-    "has_photo_id": hasPhotoId,
-    "photo_id_type": photoIdType,
-    "photo_id_number": photoIdNumber,
-    "remarks": remarks,
-    "created_by": createdBy,
-    "updated_by": updatedBy,
-    "create_time": createTime.toIso8601String(),
-    "update_time": updateTime,
+  "id": id,
+  "seller_code": sellerCode,
+  "code_type_id": codeTypeId,
+  "name": name,
+  "father_name": fatherName,
+  "mother_name": motherName,
+  "mobile_01": mobile01,
+  "mobile_02": mobile02,
+  "country_name": countryName,
+  "facebook_profile_name": facebookProfileName,
+  "facebook_profile_url": facebookProfileUrl,
+  "facebook_page_url": facebookPageUrl,
+  "email": email,
+  "address": address,
+  "business_mode_id": businessModeId,
+  "business_name": businessName,
+  "business_mobile": businessMobile,
+  "has_request_seller_code": hasRequestSellerCode,
+  "has_photo_id": hasPhotoId,
+  "photo_id_type": photoIdType,
+  "photo_id_number": photoIdNumber,
+  "remarks": remarks,
+  "created_by": createdBy,
+  "updated_by": updatedBy,
+  "create_time": createTime.toIso8601String(),
+  "update_time": updateTime,
   };
 }
