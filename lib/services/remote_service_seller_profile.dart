@@ -12,8 +12,6 @@ class RemoteServiceSellerProfile{
     if(response.statusCode == 200)
     {
       var json = response.body;
-      // throw Exception('exception ok');
-      // return null;
       return sellerFromJson(json);
     }
   }

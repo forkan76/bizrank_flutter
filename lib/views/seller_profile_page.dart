@@ -35,7 +35,10 @@ class _SellerProfileState extends State<SellerProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("Seller Profile")),
-        body:const Text('ok')
+        body:
+        Container(
+          child: const Text('ok'),
+        )
     );
   }
 }
