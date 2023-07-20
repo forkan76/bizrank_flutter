@@ -10,30 +10,30 @@ String sellerToJson(List<Seller> data) => json.encode(List<dynamic>.from(data.ma
 
 class Seller {
   int id;
-  String sellerCode;
-  int codeTypeId;
+  String? sellerCode;
+  int? codeTypeId;
   String name;
   String? fatherName;
   String? motherName;
-  String mobile01;
+  String? mobile01;
   String? mobile02;
-  String countryName;
-  String facebookProfileName;
-  String facebookProfileUrl;
+  String? countryName;
+  String? facebookProfileName;
+  String? facebookProfileUrl;
   String? facebookPageUrl;
-  String email;
-  String address;
-  int businessModeId;
+  String? email;
+  String? address;
+  int? businessModeId;
   String? businessName;
   String? businessMobile;
-  int hasRequestSellerCode;
-  int hasPhotoId;
-  String photoIdType;
-  String photoIdNumber;
-  String remarks;
-  int createdBy;
-  int updatedBy;
-  DateTime createTime;
+  int? hasRequestSellerCode;
+  int? hasPhotoId;
+  String? photoIdType;
+  String? photoIdNumber;
+  String? remarks;
+  int? createdBy;
+  int? updatedBy;
+  DateTime? createTime;
   DateTime? updateTime;
 
   Seller({
@@ -41,19 +41,19 @@ class Seller {
     required this.sellerCode,
     required this.codeTypeId,
     required this.name,
-    this.fatherName,
-    this.motherName,
+    required this.fatherName,
+    required this.motherName,
     required this.mobile01,
-    this.mobile02,
+    required this.mobile02,
     required this.countryName,
     required this.facebookProfileName,
     required this.facebookProfileUrl,
-    this.facebookPageUrl,
+    required this.facebookPageUrl,
     required this.email,
     required this.address,
     required this.businessModeId,
-    this.businessName,
-    this.businessMobile,
+    required this.businessName,
+    required this.businessMobile,
     required this.hasRequestSellerCode,
     required this.hasPhotoId,
     required this.photoIdType,
@@ -62,7 +62,7 @@ class Seller {
     required this.createdBy,
     required this.updatedBy,
     required this.createTime,
-    this.updateTime,
+    required this.updateTime,
   });
 
   factory Seller.fromJson(Map<String, dynamic> json) => Seller(
@@ -90,36 +90,38 @@ class Seller {
     remarks: json["remarks"],
     createdBy: json["created_by"],
     updatedBy: json["updated_by"],
-    createTime: DateTime.parse(json["create_time"]),
-    updateTime: json["update_time"] != null ? DateTime.parse(json["update_time"]):null,
+    createTime: json["create_time"] != null ? DateTime.parse(json["create_time"]) : null,
+
+    updateTime: json["update_time"] != null ? DateTime.parse(json["update_time"]) : null,
+
   );
 
   Map<String, dynamic> toJson() => {
-  "id": id,
-  "seller_code": sellerCode,
-  "code_type_id": codeTypeId,
-  "name": name,
-  "father_name": fatherName,
-  "mother_name": motherName,
-  "mobile_01": mobile01,
-  "mobile_02": mobile02,
-  "country_name": countryName,
-  "facebook_profile_name": facebookProfileName,
-  "facebook_profile_url": facebookProfileUrl,
-  "facebook_page_url": facebookPageUrl,
-  "email": email,
-  "address": address,
-  "business_mode_id": businessModeId,
-  "business_name": businessName,
-  "business_mobile": businessMobile,
-  "has_request_seller_code": hasRequestSellerCode,
-  "has_photo_id": hasPhotoId,
-  "photo_id_type": photoIdType,
-  "photo_id_number": photoIdNumber,
-  "remarks": remarks,
-  "created_by": createdBy,
-  "updated_by": updatedBy,
-  "create_time": createTime.toIso8601String(),
-  "update_time": updateTime,
+    "id": id,
+    "seller_code": sellerCode,
+    "code_type_id": codeTypeId,
+    "name": name,
+    "father_name": fatherName,
+    "mother_name": motherName,
+    "mobile_01": mobile01,
+    "mobile_02": mobile02,
+    "country_name": countryName,
+    "facebook_profile_name": facebookProfileName,
+    "facebook_profile_url": facebookProfileUrl,
+    "facebook_page_url": facebookPageUrl,
+    "email": email,
+    "address": address,
+    "business_mode_id": businessModeId,
+    "business_name": businessName,
+    "business_mobile": businessMobile,
+    "has_request_seller_code": hasRequestSellerCode,
+    "has_photo_id": hasPhotoId,
+    "photo_id_type": photoIdType,
+    "photo_id_number": photoIdNumber,
+    "remarks": remarks,
+    "created_by": createdBy,
+    "updated_by": updatedBy,
+    "create_time": createTime,
+    "update_time": updateTime,
   };
 }
