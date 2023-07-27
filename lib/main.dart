@@ -5,10 +5,11 @@ import 'package:http/http.dart' as http;
 //To use REST api end
 import 'package:npkbh/Fragment/HomeFragment.dart';
 import 'package:npkbh/Fragment/PersonFragment.dart';
+import 'package:npkbh/pages/login_page.dart';
 import 'package:npkbh/views/home_page.dart';
 
 main() {
-  // runApp(const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         darkTheme: ThemeData(primarySwatch: Colors.amber),
         color: Colors.blue,
         debugShowCheckedModeBanner: false,
-        home: const HomePage());
+        home: const LoginPage());
   }
 }
 
