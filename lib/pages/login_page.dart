@@ -1,8 +1,39 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:http/http.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  void login(String email, String password) async {
+   try{
+      Response response = await post(
+        Uri.parse('https://reqres.in/api/register'),
+        body: {
+          'email' : email,
+          'password' : password
+        }
+      );
+
+      if(response.statusCode == 200){
+        print('Account created successfully');
+      } else {
+        print('Failed');
+      }
+
+   } catch(e){
+     print(e.toString());
+   }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +61,7 @@ class LoginPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+              controller: emailController,
               decoration: InputDecoration(
                   hintText: 'Email',
                   prefixIcon: const Padding(
@@ -44,6 +76,7 @@ class LoginPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+              controller: passwordController,
               decoration: InputDecoration(
                   hintText: 'Password',
                   prefixIcon: const Padding(
@@ -63,15 +96,20 @@ class LoginPage extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 18.0, right: 18, top: 20),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  shape: const StadiumBorder(),
-                  maximumSize: Size(MediaQuery.of(context).size.width * .3, 40),
-                  minimumSize: const Size(80, 40)),
-              onPressed: () {},
-              child: const Text("LOG IN"),
+          GestureDetector(
+            onTap: (){
+              login(emailController.text.toString(), passwordController.text.toString());
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 18.0, right: 18, top: 20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    maximumSize: Size(MediaQuery.of(context).size.width * .3, 40),
+                    minimumSize: const Size(80, 40)),
+                onPressed: () {},
+                child: const Text("LOG IN"),
+              ),
             ),
           ),
           const SizedBox(
@@ -140,5 +178,11 @@ class LoginPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<TextEditingController>('emailController', emailController));
   }
 }
