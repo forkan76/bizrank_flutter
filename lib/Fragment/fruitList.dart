@@ -5,7 +5,7 @@ import 'fruitItem.dart';
 class FruitList extends StatelessWidget {
   final List<Fruit> items;
 
-  FruitList({required Key key, required this.items});
+  const FruitList({super.key, required Key key, required this.items});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

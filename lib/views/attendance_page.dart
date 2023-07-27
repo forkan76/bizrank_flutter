@@ -29,7 +29,7 @@ class _AttendancePageState extends State<AttendancePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Attendance')),
-      body: Container(
+      body: SizedBox(
         width: 200,
         height: 300,
         child: Text(getAttendances.toString()),

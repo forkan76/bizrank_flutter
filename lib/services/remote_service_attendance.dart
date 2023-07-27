@@ -16,5 +16,6 @@ class RemoteServiceAttendance{
       // print(response.body.length);
       return getAttendanceFromJson(json);
     }
+    return null;
   }
 }

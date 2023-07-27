@@ -1,55 +1,37 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //To use REST api
 import 'dart:async';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 //To use REST api end
-import 'package:npkbh/Fragment/BalanceFragment.dart';
-import 'package:npkbh/Fragment/ContactFragment.dart';
-import 'package:npkbh/Fragment/EmailFragment.dart';
 import 'package:npkbh/Fragment/HomeFragment.dart';
 import 'package:npkbh/Fragment/PersonFragment.dart';
-import 'package:npkbh/Fragment/SearchFragment.dart';
-import 'package:npkbh/Fragment/SettingsFragment.dart';
-import 'package:npkbh/views/attendance_page.dart';
 import 'package:npkbh/views/home_page.dart';
-import 'package:npkbh/views/seller_profile_page.dart';
 
-import 'Fragment/AlermFragment.dart';
-
-import 'package:npkbh/Fragment/fruit.dart';
-import 'package:npkbh/Fragment/fruitItem.dart';
-import 'package:npkbh/Fragment/fruitList.dart';
-
-main(){
-  runApp(const MyApp());
+main() {
+  // runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.green
-        ),
+        theme: ThemeData(primarySwatch: Colors.green),
         darkTheme: ThemeData(primarySwatch: Colors.amber),
         color: Colors.blue,
         debugShowCheckedModeBanner: false,
-        home: const SellerProfile()
-    );
+        home: const HomePage());
   }
-  
 }
 
 // class _MyAppState extends State<MyApp>{
 //
 // }
 
-class HomeActivity extends StatelessWidget{
+class HomeActivity extends StatelessWidget {
+  const HomeActivity({super.key});
+
   @override
 
   // late List<String> posts;
@@ -75,206 +57,279 @@ class HomeActivity extends StatelessWidget{
   //   super.initState();
   // }
 
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(length: 2, child: Scaffold(
-      appBar: AppBar(
-        title: Text("NPKBH"),
-        bottom: TabBar(
-          isScrollable: true,
-          tabs: [
-            Tab(icon: Icon(Icons.home), text: "Home"),
-            Tab(icon: Icon(Icons.access_alarm), text: "Profile"),
-          ],
-        ),
-      ),
-      body: TabBarView(
-        children: [
-          HomeFragment(),
-          PersonFragment(),
-        ],
-      ),
-    ));
+    return DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text("NPKBH"),
+            bottom: const TabBar(
+              isScrollable: true,
+              tabs: [
+                Tab(icon: Icon(Icons.home), text: "Home"),
+                Tab(icon: Icon(Icons.access_alarm), text: "Profile"),
+              ],
+            ),
+          ),
+          body: const TabBarView(
+            children: [
+              HomeFragment(),
+              PersonFragment(),
+            ],
+          ),
+        ));
   }
-
 }
 
-class HomeActivityBackup extends StatelessWidget{
+class HomeActivityBackup extends StatelessWidget {
+  HomeActivityBackup({super.key});
+
   // HomeActivity({super.key});
 
-  MySnackBar(message, context){
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message))
-    );
+  MySnackBar(message, context) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   var MyItems = [
-    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH1"},
-    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH2"},
-    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH3"},
-    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH4"},
-    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH5"},
-    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH6"},
-    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH7"},
-    {"img": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png", "title": "NPKBH8"}
+    {
+      "img":
+          "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+      "title": "NPKBH1"
+    },
+    {
+      "img":
+          "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+      "title": "NPKBH2"
+    },
+    {
+      "img":
+          "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+      "title": "NPKBH3"
+    },
+    {
+      "img":
+          "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+      "title": "NPKBH4"
+    },
+    {
+      "img":
+          "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+      "title": "NPKBH5"
+    },
+    {
+      "img":
+          "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+      "title": "NPKBH6"
+    },
+    {
+      "img":
+          "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+      "title": "NPKBH7"
+    },
+    {
+      "img":
+          "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+      "title": "NPKBH8"
+    }
   ];
 
-  MyAlertDialog(context){
-    return showDialog(context: context, builder: (BuildContext context){
-      return Expanded(child: AlertDialog(
-        title: Text("Alert!"),
-        content: Text("Do you want to delete"),
-        actions: [
-          TextButton(onPressed: (){
-            MySnackBar("Delete success", context);
-            Navigator.of(context).pop();
-          }, child: Text("Yes")),
-          TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text("No"))
-        ],
-      ));
-    });
+  MyAlertDialog(context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Expanded(
+              child: AlertDialog(
+            title: const Text("Alert!"),
+            content: const Text("Do you want to delete"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    MySnackBar("Delete success", context);
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("Yes")),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("No"))
+            ],
+          ));
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home"),
-        titleSpacing: 10,
-        actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.search))
-        ],
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        elevation: 10,
-        child: Icon(Icons.add),
-        backgroundColor: Colors.green,
-        onPressed: (){
-          MySnackBar("I am floating action button.", context);
-        },
-      ),
-
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.message), label: "Contact"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
-        ],
-        onTap: (int index){
-          if(index == 0){
-            MySnackBar("I am home bottom menu.", context);
-          }
-          if(index == 1){
-            MySnackBar("I am contact bottom menu.", context);
-          }
-          if(index == 2){
-            MySnackBar("I am profile bottom menu.", context);
-          }
-        },
-      ),
-
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-                child: UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(color: Colors.black),
-                  accountName: Text("Forkan"),
-                  accountEmail: Text("forkan76@gmail.com"),
-                  // currentAccountPicture: Image.network("https://pixlok.com/wp-content/uploads/2021/05/flutter-logo-768x768.jpg"),
-                  onDetailsPressed: (){MySnackBar('This is profile', context);},
-                )
-            ),
-            ListTile(leading: Icon(Icons.home), title: Text("Home"), onTap: (){MySnackBar("Drawyer home", context);}),
-            ListTile(leading: Icon(Icons.message), title: Text("Contact"), onTap: (){MySnackBar("Drawyer contact", context);}),
-            ListTile(leading: Icon(Icons.person), title: Text("Profile"), onTap: (){MySnackBar("Drawyer profile", context);}),
-            ListTile(leading: Icon(Icons.email), title: Text("Email"), onTap: (){MySnackBar("Drawyer email", context);}),
-            ListTile(leading: Icon(Icons.phone), title: Text("Phone"), onTap: (){MySnackBar("Drawyer phone", context);})
+        appBar: AppBar(
+          title: const Text("Home"),
+          titleSpacing: 10,
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.search))
           ],
         ),
-      ),
-      // endDrawer: (),
+        floatingActionButton: FloatingActionButton(
+          elevation: 10,
+          backgroundColor: Colors.green,
+          onPressed: () {
+            MySnackBar("I am floating action button.", context);
+          },
+          child: const Icon(Icons.add),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.message), label: "Contact"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
+          ],
+          onTap: (int index) {
+            if (index == 0) {
+              MySnackBar("I am home bottom menu.", context);
+            }
+            if (index == 1) {
+              MySnackBar("I am contact bottom menu.", context);
+            }
+            if (index == 2) {
+              MySnackBar("I am profile bottom menu.", context);
+            }
+          },
+        ),
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              DrawerHeader(
+                  child: UserAccountsDrawerHeader(
+                decoration: const BoxDecoration(color: Colors.black),
+                accountName: const Text("Forkan"),
+                accountEmail: const Text("forkan76@gmail.com"),
+                // currentAccountPicture: Image.network("https://pixlok.com/wp-content/uploads/2021/05/flutter-logo-768x768.jpg"),
+                onDetailsPressed: () {
+                  MySnackBar('This is profile', context);
+                },
+              )),
+              ListTile(
+                  leading: const Icon(Icons.home),
+                  title: const Text("Home"),
+                  onTap: () {
+                    MySnackBar("Drawyer home", context);
+                  }),
+              ListTile(
+                  leading: const Icon(Icons.message),
+                  title: const Text("Contact"),
+                  onTap: () {
+                    MySnackBar("Drawyer contact", context);
+                  }),
+              ListTile(
+                  leading: const Icon(Icons.person),
+                  title: const Text("Profile"),
+                  onTap: () {
+                    MySnackBar("Drawyer profile", context);
+                  }),
+              ListTile(
+                  leading: const Icon(Icons.email),
+                  title: const Text("Email"),
+                  onTap: () {
+                    MySnackBar("Drawyer email", context);
+                  }),
+              ListTile(
+                  leading: const Icon(Icons.phone),
+                  title: const Text("Phone"),
+                  onTap: () {
+                    MySnackBar("Drawyer phone", context);
+                  })
+            ],
+          ),
+        ),
+        // endDrawer: (),
 
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-            height: 150,
-            width: 150,
-            margin: EdgeInsets.all(30),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.amber,
-              border: Border.all(color: Colors.black, width: 6),
-            ),
-            child: Center(
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                shadowColor: Color.fromRGBO(33, 191, 115, 1),
-                color: Color.fromRGBO(33, 191, 115, 1),
-                elevation: 80,
-                child: SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: Center(child: Text('This is card'),),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              height: 150,
+              width: 150,
+              margin: const EdgeInsets.all(30),
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.amber,
+                border: Border.all(color: Colors.black, width: 6),
+              ),
+              child: Center(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  shadowColor: const Color.fromRGBO(33, 191, 115, 1),
+                  color: const Color.fromRGBO(33, 191, 115, 1),
+                  elevation: 80,
+                  child: const SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: Center(
+                      child: Text('This is card'),
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-          Container(
-            height: 150,
-            width: 150,
-            margin: EdgeInsets.all(30),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.amber,
-              border: Border.all(color: Colors.black, width: 6),
-            ),
-            child: Center(
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                shadowColor: Color.fromRGBO(33, 191, 115, 1),
-                color: Color.fromRGBO(33, 191, 115, 1),
-                elevation: 80,
-                child: SizedBox(
-                  height: 150,
-                  width: 150,
-                  child: Center(child: Text('This is card'),),
+            Container(
+              height: 150,
+              width: 150,
+              margin: const EdgeInsets.all(30),
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.amber,
+                border: Border.all(color: Colors.black, width: 6),
+              ),
+              child: Center(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  shadowColor: const Color.fromRGBO(33, 191, 115, 1),
+                  color: const Color.fromRGBO(33, 191, 115, 1),
+                  elevation: 80,
+                  child: const SizedBox(
+                    height: 150,
+                    width: 150,
+                    child: Center(
+                      child: Text('This is card'),
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
-      )
+          ],
+        )
 
+        // body: Center(
+        //   child: Card(
+        //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        //     shadowColor: Color.fromRGBO(33, 191, 115, 1),
+        //     color: Color.fromRGBO(33, 191, 115, 1),
+        //     elevation: 80,
+        //     child: SizedBox(
+        //       height: 200,
+        //       width: 200,
+        //       child: Center(child: Text('This is card'),),
+        //     ),
+        //   ),
+        // ),
 
-      // body: Center(
-      //   child: Card(
-      //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      //     shadowColor: Color.fromRGBO(33, 191, 115, 1),
-      //     color: Color.fromRGBO(33, 191, 115, 1),
-      //     elevation: 80,
-      //     child: SizedBox(
-      //       height: 200,
-      //       width: 200,
-      //       child: Center(child: Text('This is card'),),
-      //     ),
-      //   ),
-      // ),
-
-      // body: Column(
-      //   mainAxisAlignment: MainAxisAlignment.start,
-      //   children: [
-      //     // ElevatedButton(onPressed: (){
-      //     //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity1("This is from hom to activit 1")));
-      //     // }, child: Text("This is from home to activity 1")),
-      //     // ElevatedButton(onPressed: (){
-      //     //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity2("This is from hom to activit 2")));
-      //     // }, child: Text("This is from home to activity 2"))
-      //   ],
-      // ),
-    );
+        // body: Column(
+        //   mainAxisAlignment: MainAxisAlignment.start,
+        //   children: [
+        //     // ElevatedButton(onPressed: (){
+        //     //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity1("This is from hom to activit 1")));
+        //     // }, child: Text("This is from home to activity 1")),
+        //     // ElevatedButton(onPressed: (){
+        //     //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity2("This is from hom to activit 2")));
+        //     // }, child: Text("This is from home to activity 2"))
+        //   ],
+        // ),
+        );
 
     // return DefaultTabController(
     //     length: 8,
@@ -406,50 +461,47 @@ class HomeActivityBackup extends StatelessWidget{
     //   ),
     // );
   }
-  
 }
 
-class Activity1 extends StatelessWidget{
+class Activity1 extends StatelessWidget {
   String msg;
-  Activity1(
-      this.msg,
-      {
-        super.key
-      }
-  );
+  Activity1(this.msg, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Activity 1"),
+        title: const Text("Activity 1"),
       ),
       body: Center(
-        child: ElevatedButton(onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity2("")));
-        }, child: Text(this.msg)),
+        child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Activity2("")));
+            },
+            child: Text(msg)),
       ),
     );
   }
 }
 
-class Activity2 extends StatelessWidget{
+class Activity2 extends StatelessWidget {
   String msg;
-  Activity2(
-      this.msg,
-        {super.key}
-      );
+  Activity2(this.msg, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Activity 2"),
+        title: const Text("Activity 2"),
       ),
       body: Center(
-        child: ElevatedButton(onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>Activity1("")));
-        }, child: Text(this.msg)),
+        child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Activity1("")));
+            },
+            child: Text(msg)),
       ),
     );
   }
