@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,24 +17,26 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController passwordController = TextEditingController();
 
   void login(String email, String password) async {
-   try{
+    try {
       Response response = await post(
-        Uri.parse('https://reqres.in/api/register'),
-        body: {
-          'email' : email,
-          'password' : password
-        }
-      );
+          // https://reqres.in/api/register
+          Uri.parse('http://localhost/fbsellers1/api/login/login.php'),
+          body: {'user_email': email, 'user_password': password});
 
-      if(response.statusCode == 200){
-        print('Account created successfully');
+      if (response.statusCode == 200) {
+        // print('Account created successfully');
+        // var jsonData = jsonDecode(response.body);
+
+        var jsonData = jsonDecode(response.body);
+        var userData = jsonData["userData"];
+        // print(userData["user_email"]);
+        print(jsonData);
       } else {
         print('Failed');
       }
-
-   } catch(e){
-     print(e.toString());
-   }
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   @override
@@ -64,6 +68,7 @@ class _LoginPageState extends State<LoginPage> {
               controller: emailController,
               decoration: InputDecoration(
                   hintText: 'Email',
+                  labelText: "Email",
                   prefixIcon: const Padding(
                     padding: EdgeInsets.only(left: 28.0),
                     child: Icon(Icons.person_outlined),
@@ -96,20 +101,18 @@ class _LoginPageState extends State<LoginPage> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-          GestureDetector(
-            onTap: (){
-              login(emailController.text.toString(), passwordController.text.toString());
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(left: 18.0, right: 18, top: 20),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(),
-                    maximumSize: Size(MediaQuery.of(context).size.width * .3, 40),
-                    minimumSize: const Size(80, 40)),
-                onPressed: () {},
-                child: const Text("LOG IN"),
-              ),
+          Padding(
+            padding: const EdgeInsets.only(left: 18.0, right: 18, top: 20),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  shape: const StadiumBorder(),
+                  maximumSize: Size(MediaQuery.of(context).size.width * .3, 40),
+                  minimumSize: const Size(80, 40)),
+              onPressed: () {
+                login(emailController.text.toString(),
+                    passwordController.text.toString());
+              },
+              child: const Text("LOG IN"),
             ),
           ),
           const SizedBox(
@@ -183,6 +186,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<TextEditingController>('emailController', emailController));
+    properties.add(DiagnosticsProperty<TextEditingController>(
+        'emailController', emailController));
   }
 }
