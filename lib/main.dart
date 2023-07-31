@@ -8,6 +8,9 @@ import 'package:npkbh/Fragment/PersonFragment.dart';
 import 'package:npkbh/pages/login_page.dart';
 import 'package:npkbh/views/home_page.dart';
 
+// App build command
+// flutter build apk --split-per-abi
+
 main() {
   runApp(const MyApp());
 }

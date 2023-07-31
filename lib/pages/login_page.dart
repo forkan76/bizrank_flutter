@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart';
+import 'package:npkbh/views/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -30,7 +31,9 @@ class _LoginPageState extends State<LoginPage> {
         var jsonData = jsonDecode(response.body);
         var userData = jsonData["userData"];
         // print(userData["user_email"]);
-        print(jsonData);
+        // print(jsonData);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
       } else {
         print('Failed');
       }
