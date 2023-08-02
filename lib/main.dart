@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:npkbh/Fragment/HomeFragment.dart';
 import 'package:npkbh/Fragment/PersonFragment.dart';
 import 'package:npkbh/pages/login_page.dart';
-import 'package:npkbh/views/home_page.dart';
 
 // App build command
 // flutter build apk --split-per-abi
@@ -35,8 +34,6 @@ class MyApp extends StatelessWidget {
 
 class HomeActivity extends StatelessWidget {
   const HomeActivity({super.key});
-
-  @override
 
   // late List<String> posts;
   // Future<bool> _getPosts() async{
@@ -86,16 +83,19 @@ class HomeActivity extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class HomeActivityBackup extends StatelessWidget {
   HomeActivityBackup({super.key});
 
   // HomeActivity({super.key});
 
+  // ignore: non_constant_identifier_names
   MySnackBar(message, context) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message)));
   }
 
+  // ignore: non_constant_identifier_names
   var MyItems = [
     {
       "img":
@@ -139,6 +139,7 @@ class HomeActivityBackup extends StatelessWidget {
     }
   ];
 
+  // ignore: non_constant_identifier_names
   MyAlertDialog(context) {
     return showDialog(
         context: context,
@@ -467,6 +468,7 @@ class HomeActivityBackup extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class Activity1 extends StatelessWidget {
   String msg;
   Activity1(this.msg, {super.key});
@@ -489,6 +491,7 @@ class Activity1 extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class Activity2 extends StatelessWidget {
   String msg;
   Activity2(this.msg, {super.key});

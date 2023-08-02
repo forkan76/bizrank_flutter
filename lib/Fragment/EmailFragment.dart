@@ -1,14 +1,13 @@
+// ignore: file_names
 import 'package:flutter/cupertino.dart';
 
-class EmailFragment extends StatelessWidget{
+class EmailFragment extends StatelessWidget {
   const EmailFragment({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Center(
-        child: Text("Email Fragment"),
-      ),
+    return const Center(
+      child: Text("Email Fragment"),
     );
   }
 }

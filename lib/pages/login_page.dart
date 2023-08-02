@@ -4,7 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart';
-import 'package:npkbh/views/home_page.dart';
+import 'package:npkbh/api_connection/api_connection.dart';
+import 'package:npkbh/views/seller_customer_page.dart';
+
+import '../views/seller_profile_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,14 +17,17 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController =
+      TextEditingController(text: 'admin@bizzrank.com');
+  TextEditingController passwordController =
+      TextEditingController(text: '1234');
 
   void login(String email, String password) async {
     try {
       Response response = await post(
           // https://reqres.in/api/register
-          Uri.parse('http://localhost/fbsellers1/api/login/login.php'),
+          Uri.parse(
+              API.login), //'http://localhost/fbsellers1/api/login/login.php'
           body: {'user_email': email, 'user_password': password});
 
       if (response.statusCode == 200) {
@@ -29,11 +35,13 @@ class _LoginPageState extends State<LoginPage> {
         // var jsonData = jsonDecode(response.body);
 
         var jsonData = jsonDecode(response.body);
+        // ignore: unused_local_variable
         var userData = jsonData["userData"];
         // print(userData["user_email"]);
         // print(jsonData);
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+        // ignore: use_build_context_synchronously
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const SellerCustomer()));
       } else {
         print('Failed');
       }

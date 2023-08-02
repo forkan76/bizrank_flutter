@@ -1,6 +1,7 @@
+// ignore: file_names
 import 'package:flutter/cupertino.dart';
 
-class BalanceFragment extends StatelessWidget{
+class BalanceFragment extends StatelessWidget {
   const BalanceFragment({super.key});
 
   @override
