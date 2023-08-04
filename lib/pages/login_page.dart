@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 import 'package:npkbh/api_connection/api_connection.dart';
 import 'package:npkbh/views/seller_customer_page.dart';
 
+// ignore: unused_import
 import '../views/seller_profile_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,6 +22,13 @@ class _LoginPageState extends State<LoginPage> {
       TextEditingController(text: 'admin@bizzrank.com');
   TextEditingController passwordController =
       TextEditingController(text: '1234');
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   void login(String email, String password) async {
     try {
