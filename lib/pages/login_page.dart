@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF375E95)),
                   onPressed: () {},
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Icon(Icons.facebook),
@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF44331)),
                   onPressed: () {},
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       FaIcon(FontAwesomeIcons.google),
@@ -183,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(
             height: 12,
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Don't have an account?"),

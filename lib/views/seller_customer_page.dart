@@ -15,7 +15,6 @@ class SellerCustomer extends StatefulWidget {
 class _SellerCustomerState extends State<SellerCustomer> {
   String selectedValue = "";
   List categoryItemList = [];
-  var dataList;
 
   Future getAllCategory() async {
     var url = API.sellerCustomerRead;
@@ -24,7 +23,6 @@ class _SellerCustomerState extends State<SellerCustomer> {
       var jsonData = jsonDecode(response.body);
       setState(() {
         categoryItemList = jsonData['result'];
-        dataList = jsonData['result'];
       });
     }
     print(categoryItemList);
@@ -97,21 +95,41 @@ class _SellerCustomerState extends State<SellerCustomer> {
       appBar: AppBar(
         title: const Text('My Customer'),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(30),
-        child: Column(
-          children: <Widget>[
-            Container(
-              child: DropdownButton(
-                  isExpanded: true,
-                  value: selectedValue,
-                  hint: const Text('Select Customer'),
-                  items: null,
-                  onChanged: null),
-            )
-          ],
-        ),
-      ),
+      body: Padding(
+          padding: const EdgeInsets.all(10),
+          child: ListView(
+            children: [
+              InputDecorator(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15.0)),
+                  contentPadding: const EdgeInsets.all(10),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                      isDense: true,
+                      value: selectedValue,
+                      isExpanded: true,
+                      menuMaxHeight: 350,
+                      items: [
+                        const DropdownMenuItem(
+                            value: "", child: Text('Select Course')),
+                        ...categoryItemList.map<DropdownMenuItem<String>>((e) {
+                          return DropdownMenuItem(
+                              value: e['id'].toString(),
+                              child: Text(e['name']));
+                        }).toList(),
+                      ],
+                      onChanged: (value) {
+                        print("Selected value $value");
+                        setState(() {
+                          selectedValue = value!;
+                        });
+                      }),
+                ),
+              ),
+            ],
+          )),
     );
   }
 }
