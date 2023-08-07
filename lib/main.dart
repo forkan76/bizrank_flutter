@@ -9,6 +9,7 @@ import 'package:npkbh/pages/login_page.dart';
 
 // App build command
 // flutter build apk --split-per-abi
+//flutter build apk --build-name=1.0 --build-number=1 (installed)
 
 main() {
   runApp(const MyApp());
