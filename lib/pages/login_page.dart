@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
         // print(jsonData);
         // ignore: use_build_context_synchronously
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const SellerCustomer()));
+            MaterialPageRoute(builder: (context) => const SellerProfile()));
       } else {
         print('Failed');
       }
@@ -65,19 +65,19 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           Image.asset(
             'images/npkbh_logo.png',
-            height: MediaQuery.of(context).size.height * .25,
+            height: MediaQuery.of(context).size.height * .15,
           ),
           const Padding(
-            padding: EdgeInsets.only(left: 100.0),
+            padding: EdgeInsets.only(left: 140.0),
             child: Text(
               "Welcome Back",
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
           ),
           const Padding(
-            padding: EdgeInsets.only(left: 70.0),
+            padding: EdgeInsets.only(left: 120.0),
             child: Text(
-              "Log in to your existing account of facebook.",
+              "Log in to your existing account.",
               style: TextStyle(fontSize: 17),
             ),
           ),
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF375E95)),
                   onPressed: () {},
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Icon(Icons.facebook),
@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF44331)),
                   onPressed: () {},
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       FaIcon(FontAwesomeIcons.google),

@@ -25,7 +25,7 @@ class _SellerCustomerState extends State<SellerCustomer> {
         categoryItemList = jsonData['result'];
       });
     }
-    print(categoryItemList);
+    // print(categoryItemList);
   }
 
   // Future getPostByCategory() async {
@@ -93,12 +93,44 @@ class _SellerCustomerState extends State<SellerCustomer> {
     // getData();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Customer'),
+        title: const Text('Customer List'),
       ),
       body: Padding(
           padding: const EdgeInsets.all(10),
           child: ListView(
             children: [
+              InputDecorator(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15.0)),
+                  contentPadding: const EdgeInsets.all(10),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                      isDense: true,
+                      value: selectedValue,
+                      isExpanded: true,
+                      menuMaxHeight: 350,
+                      items: [
+                        const DropdownMenuItem(
+                            value: "", child: Text('Select Course')),
+                        ...categoryItemList.map<DropdownMenuItem<String>>((e) {
+                          return DropdownMenuItem(
+                              value: e['id'].toString(),
+                              child: Text(e['name']));
+                        }).toList(),
+                      ],
+                      onChanged: (value) {
+                        print("Selected value $value");
+                        setState(() {
+                          selectedValue = value!;
+                        });
+                      }),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               InputDecorator(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(

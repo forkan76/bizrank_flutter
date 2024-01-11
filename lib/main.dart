@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 //To use REST api
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -12,6 +13,9 @@ import 'package:npkbh/pages/login_page.dart';
 //flutter build apk --build-name=1.0 --build-number=1 (installed)
 
 main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark));
   runApp(const MyApp());
 }
 

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:npkbh/api_connection/api_connection.dart';
@@ -59,15 +60,63 @@ class _SellerProfileState extends State<SellerProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Seller Profile")),
-        body: const Text('sellerList')
-        // Visibility(
-        //   visible: isLoaded,
-        //   // replacement: const Center(child: CircularProgressIndicator()),
-        //   child: ListView.builder(itemBuilder: (context, index) {
-        //     const Text('data');
-        //   }),
-        // )
-        );
+        body: Padding(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 40,
+          ),
+          const CircleAvatar(
+            radius: 50,
+            backgroundImage: AssetImage('images/npkbh_logo.png'),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                      offset: const Offset(0, 5),
+                      color: Colors.deepOrange.withOpacity(.2),
+                      spreadRadius: 2,
+                      blurRadius: 10)
+                ]),
+            child: const ListTile(
+              title: Text('Name'),
+              subtitle: Text('Forkan Uddin'),
+              leading: Icon(CupertinoIcons.person),
+              trailing: Icon(Icons.arrow_forward),
+              tileColor: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    ));
+  }
+
+  itemProfile(String title, String subtitle, IconData iconData) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+                offset: const Offset(0, 5),
+                color: Colors.deepOrange.withOpacity(.2),
+                spreadRadius: 2,
+                blurRadius: 10)
+          ]),
+      child: const ListTile(
+        title: Text('title'),
+        subtitle: Text('subtitle'),
+        leading: Icon(iconData),
+        trailing: Icon(Icons.arrow_forward),
+        tileColor: Colors.white,
+      ),
+    );
   }
 }
