@@ -113,7 +113,7 @@ class _SellerProfileState extends State<SellerProfile> {
       child: const ListTile(
         title: Text('title'),
         subtitle: Text('subtitle'),
-        leading: Icon(iconData),
+        // leading: Icon(iconData),
         trailing: Icon(Icons.arrow_forward),
         tileColor: Colors.white,
       ),

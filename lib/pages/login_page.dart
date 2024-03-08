@@ -49,12 +49,20 @@ class _LoginPageState extends State<LoginPage> {
         // print(jsonData);
         // ignore: use_build_context_synchronously
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const SellerProfile()));
+            MaterialPageRoute(builder: (context) => const SellerCustomer()));
       } else {
         print('Failed');
       }
     } catch (e) {
-      print(e.toString());
+      showDialog(
+          // ignore: use_build_context_synchronously
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text("Exception"),
+              content: Text(e.toString()),
+            );
+          });
     }
   }
 
@@ -67,12 +75,15 @@ class _LoginPageState extends State<LoginPage> {
             'images/npkbh_logo.png',
             height: MediaQuery.of(context).size.height * .15,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 140.0),
-            child: Text(
-              "Welcome Back",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
+          // const Padding(
+          //   padding: EdgeInsets.only(left: 140.0),
+          //   child: Text(
+          //     "Welcome Back",
+          //     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          //   ),
+          // ),
+          const SizedBox(
+            height: 12,
           ),
           const Padding(
             padding: EdgeInsets.only(left: 120.0),
@@ -93,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Icon(Icons.person_outlined),
                   ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(10),
                   )),
             ),
           ),
@@ -108,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Icon(Icons.lock_open),
                   ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(10),
                   )),
             ),
           ),
@@ -121,9 +132,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 18.0, right: 18, top: 20),
+            padding: const EdgeInsets.only(left: 168.0, right: 150, top: 20),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromRGBO(255, 255, 0, 0.5),
                   shape: const StadiumBorder(),
                   maximumSize: Size(MediaQuery.of(context).size.width * .3, 40),
                   minimumSize: const Size(80, 40)),
@@ -149,7 +161,8 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF375E95)),
+                      backgroundColor:
+                          const Color.fromARGB(255, 200, 218, 243)),
                   onPressed: () {},
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
