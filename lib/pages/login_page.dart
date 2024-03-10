@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
         // print(jsonData);
         // ignore: use_build_context_synchronously
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const SellerCustomer()));
+            MaterialPageRoute(builder: (context) => const SellerProfile()));
       } else {
         print('Failed');
       }
